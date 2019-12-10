@@ -6,6 +6,9 @@ import { Title } from '../Styles/title'
 const NavbarWrapper = styled.div`
   background-color:${pizzaColor};
   padding:10px;
+  position:fixed;
+  top:0;
+  width:100%;
   p{
     margin:0;
   }
