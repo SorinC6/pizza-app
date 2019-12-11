@@ -7,10 +7,13 @@ import FoodDialog from "./components/Dialog/Dialog";
 import Order from "./components/Order/Order";
 import { useOpenFood } from "./components/hooks/useOpenFood";
 import { useOrders } from "./components/hooks/useOrders";
+import { useTitle } from "./components/hooks/useTitle";
 
 function App() {
   const openFood = useOpenFood();
   const orders = useOrders();
+  useTitle({ ...openFood, ...orders });
+
   return (
     <>
       <GlobalStyle />
