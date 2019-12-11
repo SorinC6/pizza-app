@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FoodLabel } from "../Menu/FoodGrid";
 import { pizzaColor } from "../../Styles/colors";
 import { Title } from "../../Styles/title";
+import { formatPrice } from "../../Data/FoodData";
 
 const Dialog = styled.div`
   width: 500px;
@@ -75,7 +76,7 @@ export default function FoodDialog({
   if (!openFood) return null;
   //default order
   const order = {
-    name: openFood.name
+    ...openFood
   };
   const addToOrder = () => {
     setOrders([...orders, order]);
@@ -91,7 +92,9 @@ export default function FoodDialog({
         </DialogBanner>
         <DialogContent></DialogContent>
         <DialogFooter>
-          <ConfirmButton onClick={addToOrder}>Add to order</ConfirmButton>
+          <ConfirmButton onClick={addToOrder}>
+            Add to order: {formatPrice(openFood.price)}
+          </ConfirmButton>
         </DialogFooter>
       </Dialog>
     </>
