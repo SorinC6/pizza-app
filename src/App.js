@@ -5,17 +5,20 @@ import { Banner } from "./components/Banner/Banner";
 import Menu from "./components/Menu/Menu";
 import FoodDialog from "./components/Dialog/Dialog";
 import Order from "./components/Order/Order";
+import { useOpenFood } from "./components/hooks/useOpenFood";
+import { useOrders } from "./components/hooks/useOrders";
 
 function App() {
-  const [openFood, setOpenFood] = useState(null);
+  const openFood = useOpenFood();
+  const orders = useOrders();
   return (
     <>
       <GlobalStyle />
-      <FoodDialog openFood={openFood} setOpenFood={setOpenFood} />
+      <FoodDialog {...openFood} {...orders} />
       <Navbar />
-      <Order />
+      <Order {...orders} />
       <Banner />
-      <Menu setOpenFood={setOpenFood} />
+      <Menu {...openFood} />
     </>
   );
 }

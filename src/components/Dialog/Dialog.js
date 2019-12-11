@@ -63,18 +63,35 @@ const DialogShadow = styled.div`
   z-index: 4;
 `;
 
-export default function FoodDialog({ openFood, setOpenFood }) {
-  console.log(openFood);
+export default function FoodDialog({
+  openFood,
+  setOpenFood,
+  setOrders,
+  orders
+}) {
+  const closeDialog = () => {
+    setOpenFood(null);
+  };
+  if (!openFood) return null;
+  //default order
+  const order = {
+    name: openFood.name
+  };
+  const addToOrder = () => {
+    setOrders([...orders, order]);
+    closeDialog();
+  };
+
   return openFood ? (
     <>
-      <DialogShadow onClick={() => setOpenFood(null)} />
+      <DialogShadow onClick={closeDialog} />
       <Dialog>
         <DialogBanner img={openFood.img}>
           <DialogBannerName>{openFood.name}</DialogBannerName>
         </DialogBanner>
         <DialogContent></DialogContent>
         <DialogFooter>
-          <ConfirmButton>Add to order</ConfirmButton>
+          <ConfirmButton onClick={addToOrder}>Add to order</ConfirmButton>
         </DialogFooter>
       </Dialog>
     </>

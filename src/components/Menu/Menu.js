@@ -4,6 +4,8 @@ import { foods } from "../../Data/FoodData";
 import { Food, FoodGrid, FoodLabel } from "./FoodGrid";
 const MenuStyled = styled.div`
   height: 1000px;
+  max-width: 1200px;
+  margin: 0 auto;
   margin: 0px 400px 50px 20px;
 `;
 export default function Menu({ setOpenFood }) {

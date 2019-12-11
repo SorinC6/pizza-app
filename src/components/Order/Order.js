@@ -20,10 +20,14 @@ const OrderContent = styled(DialogContent)`
   height: 100%;
 `;
 
-export default function Order() {
+export default function Order({ orders }) {
   return (
     <OrderStyled>
-      <OrderContent>Your Order is empty</OrderContent>
+      {orders.length === 0 ? (
+        <OrderContent>Your Order is empty</OrderContent>
+      ) : (
+        <OrderContent>Found {orders.length} orders</OrderContent>
+      )}
       <DialogFooter>
         <ConfirmButton>Check Out</ConfirmButton>
       </DialogFooter>
