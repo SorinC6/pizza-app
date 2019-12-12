@@ -55,7 +55,8 @@ export default function Order({
   setOpenFood,
   loggedIn,
   login,
-  database
+  database,
+  setOpenOrderDialog
 }) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -151,19 +152,22 @@ export default function Order({
           </OrderContainer>
         </OrderContent>
       )}
-      <DialogFooter>
-        <ConfirmButton
-          onClick={() => {
-            if (loggedIn) {
-              sendOrder(orders, loggedIn);
-            } else {
-              login();
-            }
-          }}
-        >
-          Check Out
-        </ConfirmButton>
-      </DialogFooter>
+      {orders.length > 0 && (
+        <DialogFooter>
+          <ConfirmButton
+            onClick={() => {
+              if (loggedIn) {
+                setOpenOrderDialog(true);
+                sendOrder(orders, loggedIn);
+              } else {
+                login();
+              }
+            }}
+          >
+            Check Out
+          </ConfirmButton>
+        </DialogFooter>
+      )}
     </OrderStyled>
   );
 }
