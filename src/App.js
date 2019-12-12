@@ -15,8 +15,6 @@ function App() {
   const orders = useOrders();
   const auth = useAuthentication();
 
-  console.log(auth.database);
-
   useTitle({ ...openFood, ...orders });
 
   return (

@@ -54,7 +54,8 @@ export default function Order({
   setOrders,
   setOpenFood,
   loggedIn,
-  login
+  login,
+  database
 }) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -68,6 +69,37 @@ export default function Order({
     newOrders.splice(index, 1);
     setOrders(newOrders);
   };
+
+  const sendOrder = (orders, { email, displayName }) => {
+    const newOrderRef = database.ref("orders").push();
+    const newOrders = orders.map(order => {
+      return Object.keys(order).reduce((acc, orderKey) => {
+        if (!order[orderKey]) {
+          return acc;
+        }
+        if (orderKey === "toppings") {
+          return {
+            ...acc,
+            [orderKey]: order[orderKey]
+              .filter(({ checked }) => checked)
+              .map(({ name }) => name)
+          };
+        }
+        return {
+          ...acc,
+          [orderKey]: order[orderKey]
+        };
+      }, {});
+    });
+    console.log(newOrders);
+
+    newOrderRef.set({
+      orders: newOrders,
+      email,
+      displayName
+    });
+  };
+
   return (
     <OrderStyled>
       {orders.length === 0 ? (
@@ -123,7 +155,7 @@ export default function Order({
         <ConfirmButton
           onClick={() => {
             if (loggedIn) {
-              //
+              sendOrder(orders, loggedIn);
             } else {
               login();
             }
