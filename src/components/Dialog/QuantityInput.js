@@ -32,7 +32,6 @@ const IncrementButton = styled.div`
 `;
 
 const QuantitInput = ({ quantity }) => {
-  console.log(quantity);
   return (
     <div>
       <IncrementContainer>

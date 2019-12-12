@@ -21,11 +21,12 @@ export default function Toppings({ toppings, checkTopping }) {
   return (
     <ToppingGrid>
       {toppings.map((topping, index) => (
-        <CheckboxLabel>
+        <CheckboxLabel key={index}>
           <ToppingCheckbox
             type="checkbox"
             checked={topping.checked}
             onClick={() => checkTopping(index)}
+            readOnly
           />
           {topping.name}
         </CheckboxLabel>
