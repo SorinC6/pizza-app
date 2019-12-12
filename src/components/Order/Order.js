@@ -92,7 +92,6 @@ export default function Order({
         };
       }, {});
     });
-    console.log(newOrders);
 
     newOrderRef.set({
       orders: newOrders,
