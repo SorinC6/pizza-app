@@ -15,6 +15,8 @@ function App() {
   const orders = useOrders();
   const auth = useAuthentication();
 
+  console.log(auth.database);
+
   useTitle({ ...openFood, ...orders });
 
   return (
@@ -22,7 +24,7 @@ function App() {
       <GlobalStyle />
       <FoodDialog {...openFood} {...orders} />
       <Navbar {...auth} />
-      <Order {...orders} {...openFood} />
+      <Order {...orders} {...openFood} {...auth} />
       <Banner />
       <Menu {...openFood} />
     </>

@@ -49,7 +49,13 @@ const DetailItem = styled.div`
   font-size: 10px;
 `;
 
-export default function Order({ orders, setOrders, setOpenFood }) {
+export default function Order({
+  orders,
+  setOrders,
+  setOpenFood,
+  loggedIn,
+  login
+}) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
@@ -114,7 +120,17 @@ export default function Order({ orders, setOrders, setOpenFood }) {
         </OrderContent>
       )}
       <DialogFooter>
-        <ConfirmButton>Check Out</ConfirmButton>
+        <ConfirmButton
+          onClick={() => {
+            if (loggedIn) {
+              //
+            } else {
+              login();
+            }
+          }}
+        >
+          Check Out
+        </ConfirmButton>
       </DialogFooter>
     </OrderStyled>
   );

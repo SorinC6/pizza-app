@@ -7,6 +7,8 @@ firebase.initializeApp(firebaseConfig);
 let auth = firebase.auth();
 var provider = new firebase.auth.GoogleAuthProvider();
 
+const database = firebase.database();
+
 export function useAuthentication() {
   const [authenticatedUser, setAuthenticatedUser] = useState("loading");
   function login() {
@@ -27,7 +29,7 @@ export function useAuthentication() {
   useEffect(() => {
     auth.onAuthStateChanged(
       user => {
-        console.log(user);
+        //console.log(user);
         if (user) {
           setAuthenticatedUser(user);
         } else {
@@ -40,5 +42,5 @@ export function useAuthentication() {
     );
   }, []);
 
-  return { login, loggedIn: authenticatedUser, logout };
+  return { login, loggedIn: authenticatedUser, logout, database };
 }
