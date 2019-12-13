@@ -8,6 +8,10 @@ const MenuStyled = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   margin: 0px 400px 50px 20px;
+
+  @media (max-width: 600px) {
+    margin: 0px 10px 50px 20px;
+  }
 `;
 export default function Menu({ setOpenFood }) {
   return (

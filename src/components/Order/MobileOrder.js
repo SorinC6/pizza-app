@@ -11,14 +11,10 @@ const OrderStyled = styled.div`
   width: 340px;
   height: calc(100vh - 55px);
   background-color: white;
-  z-index: 7;
+  z-index: 200;
   box-shadow: 0px 0px 5px grey;
   display: flex;
   flex-direction: column;
-
-  @media (max-width: 600px) {
-    display: none;
-  }
 `;
 
 const OrderContent = styled(DialogContent)`

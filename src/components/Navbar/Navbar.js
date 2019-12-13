@@ -27,6 +27,12 @@ const UserStatus = styled.div`
   color: white;
   font-size: 15px;
   margin-right: 30px;
+
+  @media (max-width: 450px) {
+    span:first-child {
+      display: none;
+    }
+  }
 `;
 
 const LoginButton = styled.span`
@@ -34,7 +40,26 @@ const LoginButton = styled.span`
   margin-left: 20px;
 `;
 
-export default function Navbar({ login, loggedIn, logout }) {
+const Basket = styled.div`
+  @media (min-width: 600px) {
+    display: none;
+  }
+
+  cursor: pointer;
+
+  &:hover {
+    color: blue;
+  }
+`;
+
+export default function Navbar({
+  login,
+  loggedIn,
+  logout,
+  orders,
+  setDisplayOrder,
+  displayOrder
+}) {
   return (
     <NavbarWrapper>
       <Logo>
@@ -43,6 +68,18 @@ export default function Navbar({ login, loggedIn, logout }) {
           🍕
         </span>
       </Logo>
+      <Basket>
+        <span
+          role="img"
+          aria-label="emoji"
+          onClick={() => {
+            setDisplayOrder(!displayOrder);
+          }}
+        >
+          🛒
+        </span>
+        {orders.length}
+      </Basket>
       <UserStatus>
         {loggedIn !== "loading" ? (
           <>
