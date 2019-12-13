@@ -12,6 +12,7 @@ const NavbarWrapper = styled.div`
   z-index: 6;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   p {
     margin: 0;
   }
@@ -41,14 +42,25 @@ const LoginButton = styled.span`
 `;
 
 const Basket = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  transition: 0.3s all;
+  padding: 3px;
+  span:first-child {
+    font-size: 23px;
+  }
+
+  span:last-child {
+    margin-left: 5px;
+    color: white;
+  }
   @media (min-width: 600px) {
     display: none;
   }
-
-  cursor: pointer;
-
   &:hover {
-    color: blue;
+    background-color: red;
   }
 `;
 
@@ -68,17 +80,15 @@ export default function Navbar({
           🍕
         </span>
       </Logo>
-      <Basket>
-        <span
-          role="img"
-          aria-label="emoji"
-          onClick={() => {
-            setDisplayOrder(!displayOrder);
-          }}
-        >
+      <Basket
+        onClick={() => {
+          setDisplayOrder(!displayOrder);
+        }}
+      >
+        <span role="img" aria-label="emoji">
           🛒
         </span>
-        {orders.length}
+        <span>{orders.length > 0 && `( ${orders.length} )`}</span>
       </Basket>
       <UserStatus>
         {loggedIn !== "loading" ? (

@@ -1,8 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { DialogContent, DialogFooter, ConfirmButton } from "../Dialog/Dialog";
 import { formatPrice } from "../../Data/FoodData";
 import { getPrice } from "../Dialog/Dialog";
+import { slideInLeft, slideOutLeft } from "react-animations";
+
+const slideInAnimation = keyframes`${slideInLeft}`;
+const slideOutAnimation = keyframes`${slideOutLeft}`;
 
 const OrderStyled = styled.div`
   position: fixed;
@@ -11,10 +15,14 @@ const OrderStyled = styled.div`
   width: 340px;
   height: calc(100vh - 55px);
   background-color: white;
-  z-index: 200;
+  z-index: 7;
   box-shadow: 0px 0px 5px grey;
   display: flex;
   flex-direction: column;
+  animation: ${props =>
+    props.isActive
+      ? css`500ms ${slideInAnimation}`
+      : css`500ms ${slideOutAnimation}`};
 `;
 
 const OrderContent = styled(DialogContent)`
@@ -56,7 +64,8 @@ export default function Order({
   loggedIn,
   login,
   database,
-  setOpenOrderDialog
+  setOpenOrderDialog,
+  displayOrder
 }) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -101,7 +110,7 @@ export default function Order({
   };
 
   return (
-    <OrderStyled>
+    <OrderStyled isActive={displayOrder}>
       {orders.length === 0 ? (
         <OrderContent>Your Order is empty</OrderContent>
       ) : (

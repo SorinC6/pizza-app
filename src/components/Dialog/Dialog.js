@@ -21,6 +21,11 @@ export const Dialog = styled.div`
   left: calc(50vw - 250px);
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 500px) {
+    width: 300px;
+    left: calc(50vw - 150px);
+  }
 `;
 
 const DialogBanner = styled.div`
