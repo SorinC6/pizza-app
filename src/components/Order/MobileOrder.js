@@ -65,7 +65,8 @@ export default function Order({
   login,
   database,
   setOpenOrderDialog,
-  displayOrder
+  displayOrder,
+  setDisplayOrder
 }) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);

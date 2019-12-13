@@ -95,7 +95,10 @@ export default function Navbar({
           <>
             {loggedIn ? (
               <>
-                <span> 👋 Hello {loggedIn.displayName}</span>
+                <span role="img" aria-label="emoji">
+                  {" "}
+                  👋 Hello {loggedIn.displayName}
+                </span>
                 <LoginButton onClick={logout}>- Log Out</LoginButton>
               </>
             ) : (

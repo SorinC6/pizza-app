@@ -1,6 +1,9 @@
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
 const htmlToText = require("nodemailer-html-to-text").htmlToText;
+// The Firebase Admin SDK to access the Firebase Realtime Database.
+const admin = require("firebase-admin");
+admin.initializeApp();
 
 // const { email, password } = require("./config");
 const gmailEmail = functions.config().gmail.email;
@@ -26,9 +29,10 @@ exports.sendUserEmail = functions.database
 
 async function sendOrderEmail(order) {
   console.log("@@@@@@@@@@@@@@@@@@@@@@  Inside Firebase Function", order.email);
+  console.log("CREDENTALS: ", gmailEmail, gmailPassword);
 
   const mailOptions = {
-    from: `${APP_NAME} <sorin.chis06@gmail.com.com`,
+    from: `${APP_NAME} <sorin.chis89@gmail.com.com`,
     to: order.email,
     subject: `Your order from ${APP_NAME}.`,
     html: `

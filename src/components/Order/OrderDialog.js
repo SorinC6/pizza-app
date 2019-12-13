@@ -10,14 +10,24 @@ import {
 export default function OrderDialog({
   openOrderDialog,
   setOpenOrderDialog,
-  setOrders
+  setOrders,
+  setDisplayOrder
 }) {
   return openOrderDialog ? (
     <>
       <DialogShadow />
       <Dialog>
         <DialogContent>
-          <h2> 🚙 🚴‍♂️ Your Order is on the way! 🍕 💖</h2>
+          <h2>
+            {" "}
+            <span role="img" aria-label="emoji">
+              🚙 🚴‍♂️
+            </span>{" "}
+            Your Order is on the way!
+            <span role="img" aria-label="emoji">
+              🍕 💖
+            </span>
+          </h2>
           <p style={{ textAlign: "center" }}>
             We've got your email with the order. Thanks for choosing WOOP Pizza
           </p>
@@ -27,6 +37,7 @@ export default function OrderDialog({
             onClick={() => {
               setOrders([]);
               setOpenOrderDialog();
+              setDisplayOrder(false);
             }}
           >
             I'm still hungry
